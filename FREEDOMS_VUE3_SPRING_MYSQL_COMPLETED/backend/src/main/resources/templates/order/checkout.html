@@ -1,0 +1,12 @@
+<!doctype html><html lang="vi" xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thanh toán | FREEDOMS</title><link rel="stylesheet" th:href="@{/css/freedoms.css}"></head><body><div th:replace="~{fragments/header :: header}"></div>
+<div class="page-head"><div class="container"><div class="eyebrow">SECURE CHECKOUT</div><h1 class="page-title">Thông tin đặt hàng</h1></div></div><main class="container"><div th:replace="~{fragments/messages :: messages}"></div><div class="two-col">
+<section class="panel"><h2 class="panel-title">Thông tin nhận hàng</h2><form th:action="@{/checkout/submit}" th:object="${checkoutForm}" method="post">
+<div class="field"><label>Người nhận</label><input th:field="*{customerName}" required><small th:errors="*{customerName}" class="alert-error"></small></div>
+<div class="field"><label>Số điện thoại</label><input th:field="*{customerPhone}" required><small th:errors="*{customerPhone}" class="alert-error"></small></div>
+<div class="field"><label>Địa chỉ giao hàng</label><textarea th:field="*{shippingAddress}" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố" required></textarea><small th:errors="*{shippingAddress}" class="alert-error"></small></div>
+<div class="field"><label>Ghi chú đơn hàng</label><textarea th:field="*{customerNote}"></textarea></div>
+<div class="field"><label>Mã giảm giá</label><input th:field="*{couponCode}" placeholder="Ví dụ FREEDOMS10"></div>
+<div class="field"><label>Phương thức thanh toán</label><select th:field="*{paymentMethod}"><option value="BANK_TRANSFER">Chuyển khoản ngân hàng</option><option value="COD">Thanh toán khi nhận hàng (COD)</option></select></div>
+<button class="btn" type="submit">XÁC NHẬN ĐẶT HÀNG</button></form></section>
+<aside class="summary"><h3>Đơn hàng của bạn</h3><div th:each="line:${lines}" class="summary-row"><span th:text="${line.variant.product.productName + ' × ' + line.quantity}"></span><strong th:text="${#numbers.formatDecimal(line.lineTotal,0,'COMMA',0,'POINT')} + ' đ'"></strong></div><div class="summary-row summary-total"><span>Tạm tính</span><span th:text="${#numbers.formatDecimal(total,0,'COMMA',0,'POINT')} + ' đ'"></span></div><p class="muted" style="font-size:12px">Giá, ưu đãi thành viên, mã giảm giá và tồn kho sẽ được máy chủ tính lại khi bạn đặt hàng.</p></aside>
+</div></main><div th:replace="~{fragments/footer :: footer}"></div></body></html>
