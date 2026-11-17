@@ -1,9 +1,0 @@
-backend/.env
-.env
-backend/target/
-.idea/
-*.iml
-.DS_Store
-
-# Uploaded product and variant images
-backend/uploads/
