@@ -1,0 +1,8 @@
+<!doctype html><html lang="vi" xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Đăng ký | FREEDOMS</title><link rel="stylesheet" th:href="@{/css/freedoms.css}"></head><body><div th:replace="~{fragments/header :: header}"></div>
+<div class="auth-wrap"><div class="auth-card"><div class="eyebrow">JOIN FREEDOMS</div><h1>Tạo tài khoản</h1><p class="muted">Lưu thông tin mua hàng và theo dõi đơn hàng của bạn.</p><div th:replace="~{fragments/messages :: messages}"></div>
+<form th:action="@{/register}" th:object="${registerForm}" method="post"><div class="field"><label>Họ và tên</label><input th:field="*{fullName}" required><small class="alert-error" th:errors="*{fullName}"></small></div>
+<div class="field"><label>Email</label><input type="email" th:field="*{email}" required><small class="alert-error" th:errors="*{email}"></small></div>
+<div class="field"><label>Số điện thoại</label><input th:field="*{phone}"></div>
+<div class="field"><label>Mật khẩu (tối thiểu 8 ký tự)</label><input type="password" th:field="*{password}" required><small class="alert-error" th:errors="*{password}"></small></div>
+<div class="field"><label>Nhập lại mật khẩu</label><input type="password" th:field="*{confirmPassword}" required><small class="alert-error" th:errors="*{confirmPassword}"></small></div>
+<button class="btn" type="submit">TẠO TÀI KHOẢN</button></form><p class="muted" style="text-align:center;margin-top:18px">Đã có tài khoản? <a class="link" th:href="@{/login}">Đăng nhập</a></p></div></div><div th:replace="~{fragments/footer :: footer}"></div></body></html>
